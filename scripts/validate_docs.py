@@ -37,17 +37,28 @@ def prose(text):
 
 
 def links(text, include_definitions=True):
-    """Yield conventional inline/reference destinations and source offsets."""
-    for match in INLINE.finditer(text):
+    """Yield conventional inline, full, collapsed, and shortcut reference links."""
+    inline = list(INLINE.finditer(text))
+    references = list(REFERENCE_USE.finditer(text))
+    definitions = list(REFERENCE.finditer(text))
+    targets = {m[1].strip().casefold(): (m[2] or m[3]) for m in definitions}
+    for match in inline:
         yield match[1] or match[2], match.start()
-    definitions = {m[1].strip().casefold(): (m[2] or m[3]) for m in REFERENCE.finditer(text)}
-    for match in REFERENCE_USE.finditer(text):
+    for match in references:
         label = (match[2] or match[1]).strip().casefold()
-        if label in definitions:
-            yield definitions[label], match.start()
-    # Also validate definitions: catches broken shortcut-reference destinations.
+        if label in targets:
+            yield targets[label], match.start()
+    # Only standalone brackets count as shortcuts, never a definition or the
+    # label/destination of an inline or explicit reference link.
+    occupied = [(match.start(), match.end()) for match in (*inline, *references, *definitions)]
+    for match in re.finditer(r'!?\[([^\]\n]+)\]', text):
+        if any(start <= match.start() < end for start, end in occupied):
+            continue
+        label = match[1].strip().casefold()
+        if label in targets:
+            yield targets[label], match.start()
     if include_definitions:
-        for match in REFERENCE.finditer(text):
+        for match in definitions:
             yield match[2] or match[3], match.start()
 
 
@@ -62,9 +73,10 @@ def local_target(root, source, destination):
 
 
 def excluded(relative, patterns):
+    candidates = [relative] + [parent.as_posix() + '/' for parent in Path(relative).parents if parent != Path('.')]
     return (bool(set(Path(relative).parts) & IGNORED_PARTS)
             or relative.startswith('docs/superpowers/')
-            or any(fnmatch.fnmatchcase(relative, pattern) for pattern in patterns))
+            or any(fnmatch.fnmatchcase(candidate, pattern) for candidate in candidates for pattern in patterns))
 
 
 def markdown_files(root, patterns):
@@ -108,6 +120,8 @@ def validate(root):
             findings.append(f'{name}: additional guide must be an active Markdown path under docs/')
     required = ('README.md',) + PROFILES[profile]
     for name in dict.fromkeys((*required, *extra)):
+        if excluded(name, patterns):
+            findings.append(f'{name}: required document cannot be excluded')
         path = root / name
         try:
             if not path.resolve().is_relative_to(root) or not path.read_text(encoding='utf-8').strip():

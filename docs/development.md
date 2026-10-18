@@ -38,7 +38,9 @@ The tests create disposable repositories and verify findings and command exits.
 The checker validates profile configuration, required nonempty files, code README
 headings and order, registered extra guides, and README discovery links. It checks
 relative inline and reference-style Markdown links and images outside fenced code,
-including URL-encoded paths. Directory links are accepted. Root-relative links are
+including full, collapsed, and shortcut references and URL-encoded paths. Directory
+links are accepted. Exclusions cannot hide profile-required or registered guides,
+either directly or by excluding their parent directory. Root-relative links are
 resolved from the repository root. Relative links must remain inside that root.
 
 It ignores external schemes, protocol-relative URLs, and anchor-only links. It

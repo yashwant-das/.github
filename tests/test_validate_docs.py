@@ -57,6 +57,18 @@ class DocumentationTests(unittest.TestCase):
                 self.write('README.md', '# Example\n\n## Quickstart\n\nRun.\n\n## Usage\n\nUse.\n\n## Verification\n\nTest.\n\n## Documentation\n\n[Develop](docs/development.md)\n[Design](docs/architecture.md)\n')
                 self.assertEqual(self.check(), [])
 
+    def test_exclusions_cannot_hide_profile_required_documents(self):
+        self.write('docs/development.md', '# Development\n\n[Missing](missing.md)\n')
+        self.write('docs/architecture.md', '# Architecture\n\n[Missing](missing.md)\n')
+        for profile in ('complete', 'standards'):
+            for pattern in ('docs/**', 'docs/', 'docs/development.md'):
+                with self.subTest(profile=profile, pattern=pattern):
+                    self.config(profile=profile, exclude=[pattern])
+                    errors = '\n'.join(self.check())
+                    self.assertIn('required document cannot be excluded', errors)
+        self.config(profile='personal', exclude=['README.md'])
+        self.assertIn('README.md: required document cannot be excluded', '\n'.join(self.check()))
+
     def test_missing_and_malformed_configuration_fail(self):
         (self.root / '.standards.json').unlink()
         self.assertIn('.standards.json', '\n'.join(self.check()))
@@ -98,6 +110,22 @@ class DocumentationTests(unittest.TestCase):
         with (self.root / 'README.md').open('a') as stream:
             stream.write('\n[CLI][cli]\n')
         self.assertEqual(self.check(), [])
+
+    def test_shortcut_and_explicit_references_make_guides_discoverable(self):
+        self.write('docs/cli.md', '# CLI\n')
+        self.config(additional_guides={'docs/cli.md':'CLI reference'})
+        prefix = (self.root / 'README.md').read_text()
+        for usage in ('[CLI]', '[cli]', '[CLI][]', '[Commands][CLI]'):
+            with self.subTest(usage=usage):
+                self.write('README.md', prefix + '\n## Documentation\n\n' + usage + '\n\n## Other\n\n[CLI]: docs/cli.md\n')
+                self.assertEqual(self.check(), [])
+
+    def test_inline_label_does_not_count_as_shortcut_reference(self):
+        self.write('docs/cli.md', '# CLI\n')
+        self.config(additional_guides={'docs/cli.md':'CLI reference'})
+        with (self.root / 'README.md').open('a') as stream:
+            stream.write('\n## Documentation\n\n[CLI](https://example.com)\n\n[CLI]: docs/cli.md\n')
+        self.assertIn('must link', '\n'.join(self.check()))
 
     def test_declared_missing_guide_and_blank_rationale_fail(self):
         self.config(additional_guides={'docs/absent.md':'API reference'})
