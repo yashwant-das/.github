@@ -54,6 +54,11 @@ def links(text, include_definitions=True):
     for match in re.finditer(r'!?\[([^\]\n]+)\]', text):
         if any(start <= match.start() < end for start, end in occupied):
             continue
+        opening = match.start() + int(match[0].startswith('!'))
+        prefix = text[:opening]
+        backslashes = len(prefix) - len(prefix.rstrip(chr(92)))
+        if backslashes % 2:
+            continue  # Escaped brackets render literal text rather than links.
         label = match[1].strip().casefold()
         if label in targets:
             yield targets[label], match.start()

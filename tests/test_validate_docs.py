@@ -120,6 +120,19 @@ class DocumentationTests(unittest.TestCase):
                 self.write('README.md', prefix + '\n## Documentation\n\n' + usage + '\n\n## Other\n\n[CLI]: docs/cli.md\n')
                 self.assertEqual(self.check(), [])
 
+    def test_escaped_shortcut_brackets_do_not_make_guides_discoverable(self):
+        self.write('docs/cli.md', '# CLI\n')
+        self.config(additional_guides={'docs/cli.md':'CLI reference'})
+        prefix = (self.root / 'README.md').read_text()
+        for slash_count in (1, 2, 3, 4):
+            with self.subTest(slash_count=slash_count):
+                usage = chr(92) * slash_count + '[CLI]'
+                self.write('README.md', prefix + '\n[CLI]\n\n## Documentation\n\n' + usage + '\n\n[CLI]: docs/cli.md\n')
+                if slash_count % 2:
+                    self.assertIn('must link', '\n'.join(self.check()))
+                else:
+                    self.assertEqual(self.check(), [])
+
     def test_inline_label_does_not_count_as_shortcut_reference(self):
         self.write('docs/cli.md', '# CLI\n')
         self.config(additional_guides={'docs/cli.md':'CLI reference'})
