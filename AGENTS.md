@@ -1,17 +1,14 @@
-# Repository guidance
+# Agent instructions
 
-This repository defines standards for several independent projects. Keep the
-foundation small and tailor rules to the existing repository collection.
+This repository contains standards for Yashwant Das's projects. When working
+on any repository that references these standards, read the relevant guide
+under `docs/` before making changes.
 
-Read README.md and the relevant maintained guide before changing a standard.
-Do not modify sibling repositories, publish changes, or change account settings
-as a side effect of editing the standards.
+When working on **this** repository:
 
-Preserve documentation profiles, deliberate runtime baselines, and justified
-exceptions. Add tests for validator behavior changes; human prose needs review,
-not tests that assert its exact wording.
-
-Run `npm test`, `npm run lint:docs`, `python3 scripts/validate_docs.py .`, and
-`git diff --check` before claiming verification. Do not claim hosted CI success
-without an actual run. Historical files under docs/superpowers are implementation
-records rather than current user guides.
+- Keep the standards concise and actionable. Each document should be readable
+  in under five minutes.
+- Do not add tooling, validators, tests, or CI to this repository. It is a
+  collection of documents, not a software project.
+- Do not modify sibling repositories or publish changes as a side effect.
+- Preserve deliberate runtime baselines and justified exceptions.
