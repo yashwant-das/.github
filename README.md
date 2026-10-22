@@ -24,7 +24,7 @@ The supported language stacks are Python, Java, JavaScript/TypeScript and Swift.
 
 ## Definitions
 
-Pending owner sign-off as the shared table; the guides already use these terms,
+Pending owner sign-off to adopt this as the shared table; the guides already use these terms,
 so treat them as the operative meanings and record any conflict as pending work
 until approval.
 
@@ -46,7 +46,9 @@ until approval.
 
 These describe the target standard. Existing repositories adopt it in stages;
 record pending work without claiming full compliance. Soft modal phrasing such
-as 'normally' or 'usually' reads as a default, not a requirement. Unless
+as 'normally' or 'usually' reads as a default, not a requirement. Conditional
+qualifiers such as 'where practical' or 'where available' are in-scope
+conditions, not defaults — the rule applies when the condition holds. Unless
 explicitly marked default or optional, policy instructions and rule lists in
 these guides are required within scope; examples and rollout suggestions are not
 requirements.
