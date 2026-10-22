@@ -95,7 +95,7 @@ checker and its checked scope. Document gradual adoption and exclusions.
 ## Updates and exceptions
 
 As part of dependency adoption, enable weekly automated dependency PRs for
-supported ecosystems. Until adopted, record this as pending work; documentation
+supported package ecosystems; action updates are covered by the CI/CD standard. Until adopted, record this as pending work; documentation
 adoption alone does not require enabling automation. Group compatible
 minor/patch changes when useful. Major updates require explicit review; automation
 may propose them but must not merge them blindly. Run the relevant unit, smoke,
