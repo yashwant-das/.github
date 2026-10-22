@@ -6,7 +6,8 @@ standards.
 ## PR check baselines
 
 Apply the [scope](../README.md#scope) first. For software repositories, combine
-checks for every language used with the relevant project-specific checks below.
+checks for every supported language used with the relevant project-specific checks
+below. Use the shared [definitions](../README.md#definitions).
 Documentation profiles do not replace these requirements.
 
 | Language / files | Required PR checks |
@@ -14,7 +15,7 @@ Documentation profiles do not replace these requirements.
 | Python | Ruff lint and format, tests; type check for maintained frameworks |
 | Java | compile, tests, static analysis |
 | JavaScript / TypeScript | lint, format check, tests; type check for TypeScript |
-| Swift and other stacks | native build and applicable tests/checks, documented per repository |
+| Swift | native build and applicable tests/checks, documented per repository |
 | Maintained Markdown | markdownlint-cli2 with the [documentation baseline](documentation.md) |
 
 | Project purpose | Additional checks / evidence |
@@ -72,6 +73,8 @@ unchanged by the PR. Apply documented exclusions consistently in both.
 
 ## Quality gates
 
+The following gates are required within scope.
+
 - Identify required check names and configure branch protection or rulesets where
   available. Workflow presence alone does not make a check required for merging.
 - Required checks must pass for the revision being merged. Do not mask failures
@@ -90,6 +93,8 @@ unchanged by the PR. Apply documented exclusions consistently in both.
   test suite.
 
 ## Workflow safety
+
+The following workflow rules are required.
 
 - Pin every third-party action to a full commit SHA.
 - Use `pull_request`, not `pull_request_target`, for PR-triggered workflows.
@@ -110,5 +115,6 @@ environments in GitHub when the project has staging or production targets.
 GitHub provides defaults only for supported community health files from a public
 `.github` repository in the same account. These standards, `AGENTS.md` and
 workflows do not automatically propagate. Each adopting repository must reference
-the standards explicitly; Shivani's repositories opt in separately.
+the standards explicitly. They apply to Yashwant Das’s repositories and
+repositories of other owners who opt in separately.
 See [GitHub's supported defaults](https://docs.github.com/en/communities/setting-up-your-project-for-healthy-contributions/creating-a-default-community-health-file).

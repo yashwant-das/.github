@@ -1,8 +1,8 @@
 # Agent instructions
 
-This repository contains standards for Yashwant Das's projects. When working
-on any repository that references these standards, read the relevant guide
-under `docs/` before making changes.
+This repository contains standards for Yashwant Das’s repositories and repositories
+of other owners who opt in separately. When working on a repository that references
+these standards, read the relevant guide under `docs/` before making changes.
 
 When working on **this** repository:
 

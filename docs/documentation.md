@@ -2,6 +2,8 @@
 
 Keep documentation useful to readers and AI agents. Choose a profile based on
 what the repository does, and record it in its README or agent instructions.
+Use the shared [definitions](../README.md#definitions). Instructions below are
+required unless explicitly marked default or optional.
 
 ## Profiles and document budget
 
@@ -57,6 +59,8 @@ Preserve useful existing material when splitting or renaming guides; update
 incoming links in the same change. Do not delete historical decisions for a quota.
 
 ## Formatting and diagrams
+
+These rules are required; the Mermaid preference is a default.
 
 - Use GitHub-Flavored Markdown, one H1 and sequential heading levels.
 - Use lowercase kebab-case guide filenames; retain conventional root names such

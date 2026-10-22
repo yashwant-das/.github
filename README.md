@@ -4,8 +4,8 @@ Shared repository standards for documentation, dependencies, structure and quali
 gates. AI agents read these documents when
 working on any repository that references them.
 
-These standards also apply to repositories owned by Shivani when they choose to
-adopt them.
+These standards apply to Yashwant Das’s repositories and repositories of other
+owners who opt in separately.
 
 ## Scope
 
@@ -20,6 +20,20 @@ This standards repository uses a topic index and focused policy guides instead
 of application setup and architecture documents. Its five guides cover separate
 policies and the adoption roadmap.
 
+The supported language stacks are Python, Java, JavaScript/TypeScript and Swift.
+
+## Definitions
+
+Draft for owner review; these definitions describe how the guides use the terms.
+
+| Term | Meaning |
+| --- | --- |
+| Maintained | Intended for current use, with an owner responsible for keeping it accurate or working; excludes archived records and generated output. |
+| Complete project | A project assigned the `complete` documentation profile because setup, development and architecture need separate guides. |
+| Substantial test framework | Reusable test infrastructure with enough configuration, integrations or execution paths to need development and architecture guides. |
+| Maintained framework | Reusable application or testing infrastructure intended for current use and supported by an owner. |
+| Software repository | A repository containing executable application, library, test or build/generation code, including personal-content projects with such code. |
+
 ## Requirement levels
 
 - **Required / must:** apply when in scope. Record any exception with its reason,
@@ -29,7 +43,9 @@ policies and the adoption roadmap.
 - **Optional / may:** adopt only when useful to the project.
 
 These describe the target standard. Existing repositories adopt it in stages;
-record pending work without claiming full compliance.
+record pending work without claiming full compliance. Unless explicitly marked
+default or optional, policy instructions and rule lists in these guides are
+required within scope; examples and rollout suggestions are not requirements.
 
 ## Using the standards
 

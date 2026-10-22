@@ -1,5 +1,8 @@
 # Dependency standard
 
+Instructions are required unless explicitly marked default or optional. Terms
+such as maintained framework use the shared [definitions](../README.md#definitions).
+
 ## Deliberate runtime baselines
 
 | Runtime | Baseline | How to declare it |
