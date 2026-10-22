@@ -112,7 +112,9 @@ The following levels apply to adopting software repositories with relevant workf
 - **Future, not required:** plan to adopt workflow dependency locking after general
   availability and a compatibility review. GitHub's
   [announcement](https://github.blog/changelog/2026-10-14-github-actions-workflow-lockfiles-in-public-preview/)
-  identifies it as public preview; confirm its status before adoption.
+  identifies it as public preview. GitHub's documentation says in-workflow SHA
+  pinning is unnecessary once a repository adopts a lockfile, so adoption requires
+  amending the SHA-pinning rules in this guide first.
 
 ## Deployments
 
