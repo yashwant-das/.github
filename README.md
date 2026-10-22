@@ -4,8 +4,8 @@ Shared repository standards for documentation, dependencies, structure and quali
 gates. AI agents read these documents when
 working on any repository that references them.
 
-These standards also apply to repositories owned by Shivani when they choose to
-adopt them.
+These standards apply to Yashwant Das’s repositories and repositories of other
+owners who opt in separately.
 
 ## Scope
 
@@ -20,16 +20,38 @@ This standards repository uses a topic index and focused policy guides instead
 of application setup and architecture documents. Its five guides cover separate
 policies and the adoption roadmap.
 
+The supported language stacks are Python, Java, JavaScript/TypeScript and Swift.
+
+## Definitions
+
+Pending owner sign-off to adopt this as the shared table; the guides already use these terms,
+so treat them as the operative meanings and record any conflict as pending work
+until approval.
+
+| Term | Meaning |
+| --- | --- |
+| Maintained | Intended for current use, with an owner responsible for keeping it accurate or working; excludes archived records and generated output. |
+| Complete project | A project assigned the `complete` documentation profile because setup, development and architecture need separate guides. |
+| Substantial test framework | Reusable test infrastructure with enough configuration, integrations or execution paths to need development and architecture guides. |
+| Maintained framework | Reusable application or testing infrastructure intended for current use and supported by an owner. |
+| Software repository | A repository containing executable application, library, test or build/generation code, including personal-content projects with such code. |
+
 ## Requirement levels
 
 - **Required / must:** apply when in scope. Record any exception with its reason,
   owner and review trigger.
-- **Default / should / prefer:** use unless an existing approach or project need
-  justifies another choice; document the reason.
+- **Default / should / prefer / normally:** use unless an existing approach or
+  project need justifies another choice; document the reason.
 - **Optional / may:** adopt only when useful to the project.
 
 These describe the target standard. Existing repositories adopt it in stages;
-record pending work without claiming full compliance.
+record pending work without claiming full compliance. Soft modal phrasing such
+as 'normally' or 'usually' reads as a default, not a requirement. Conditional
+qualifiers such as 'where practical' or 'where available' are in-scope
+conditions, not defaults — the rule applies when the condition holds. Unless
+explicitly marked default or optional, policy instructions and rule lists in
+these guides are required within scope; examples and rollout suggestions are not
+requirements.
 
 ## Using the standards
 
@@ -37,7 +59,8 @@ Read the relevant guides before changing a repository. Inspect its existing
 structure and commands, apply the relevant profile, and preserve justified
 exceptions. Record the chosen profile and a link to these standards in that
 repository's README or agent instructions. Use a repository URL that works outside
-the local workspace, preferably pinned to the adopted standards revision.
+the local workspace. Adopters should pin the standards to a tag or commit SHA
+and record it locally. Use a commit SHA when no suitable tag exists.
 
 ## Standards
 

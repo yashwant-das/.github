@@ -5,16 +5,16 @@ standards.
 
 ## PR check baselines
 
-Apply the [scope](../README.md#scope) first. For software repositories, combine
-checks for every language used with the relevant project-specific checks below.
-Documentation profiles do not replace these requirements.
+Apply the [scope](../README.md#scope) and [definitions](../README.md#definitions).
+Combine supported-language and project-specific checks; documentation profiles
+do not replace them.
 
 | Language / files | Required PR checks |
 | --- | --- |
 | Python | Ruff lint and format, tests; type check for maintained frameworks |
 | Java | compile, tests, static analysis |
 | JavaScript / TypeScript | lint, format check, tests; type check for TypeScript |
-| Swift and other stacks | native build and applicable tests/checks, documented per repository |
+| Swift | native build and applicable tests/checks, documented per repository |
 | Maintained Markdown | markdownlint-cli2 with the [documentation baseline](documentation.md) |
 
 | Project purpose | Additional checks / evidence |
@@ -25,20 +25,16 @@ Documentation profiles do not replace these requirements.
 | Personal content with executable code | Applicable build or generation checks plus content/link review |
 
 Include Markdown linting on documentation-only PRs in software repositories.
-Tests must exercise meaningful behavior; do not create empty suites to satisfy
-a row. Document unavailable or inapplicable checks as exceptions.
+Tests must exercise behavior; document unavailable or inapplicable checks.
 
-State in the development guide (or README for small projects) what checks cover.
-An agent-driven test project may use spec collection as a documented exception
-when execution requires an interactive agent. Collection proves discovery only.
+Document check scope in the development guide or small-project README. Agent-driven
+projects may use collection as an exception; it proves discovery, not execution.
 
 ## Pre-commit gates
 
-Adopting software repositories must provide fast checks on staged files before
-commit. Use [pre-commit](https://pre-commit.com/) by default, configured in
-`.pre-commit-config.yaml`. Preserve an established hook manager when it provides
-the same checks; avoid installing competing managers. Applicability follows the
-[scope](../README.md#scope).
+Software repositories must check staged files before commit. Default to
+[pre-commit](https://pre-commit.com/) and `.pre-commit-config.yaml`; preserve an
+equivalent existing hook manager. Do not install competing managers.
 
 | Files | Required checks |
 | --- | --- |
@@ -52,25 +48,23 @@ Use file filters and narrow exclusions for generated files and dependencies.
 Preserve intentional Markdown hard breaks; configure syntax checks for actual
 file formats (for example, JSONC is not strict JSON). Document exceptions.
 
-Pin hook revisions and tool versions, aligning them with CI and project locks.
-Document installation after cloning: `pre-commit install`, or the existing hook
-manager's equivalent. For uv projects, lock pre-commit in the development group
-and use `uv run pre-commit install`. Document `pre-commit run --all-files` for
-initial adoption and full checks, using `uv run` when project-managed.
+Pin hook revisions and align tool versions with CI and project locks. Document
+`pre-commit install` after cloning and `pre-commit run --all-files` for full checks,
+or equivalents. For uv projects, lock pre-commit in the development group and
+prefix both commands with `uv run`.
 
-Keep commit checks fast and independent of services or credentials after tool
-setup. Leave full test suites, builds, type checks and browser/device/cloud runs
-in CI or an optional pre-push stage. If a hook changes files, review and restage
-them before retrying; do not automatically stage unrelated changes.
+Keep hooks fast and independent of services after setup. Leave full tests, builds,
+type checks and browser/device/cloud runs in CI or optional pre-push checks. Review
+and restage hook fixes; never automatically stage unrelated changes.
 
-A failed applicable hook blocks the local commit. Agents must not bypass hooks
-without explicit user authorization; record any authorized bypass and unresolved
-checks. Hooks can be skipped or absent, so CI must independently enforce the
-required checks with the same rules and versions. Hooks check staged files; CI
-runs lint and format checks across all maintained files in scope, including files
-unchanged by the PR. Apply documented exclusions consistently in both.
+Failed hooks block commits. Agents must not bypass hooks without explicit user
+authorization; record authorized bypasses and unresolved checks. CI must independently
+check all maintained files in scope, including unchanged files, with the same rules,
+versions and exclusions. Hooks check staged files only.
 
 ## Quality gates
+
+The following gates are required within scope.
 
 - Identify required check names and configure branch protection or rulesets where
   available. Workflow presence alone does not make a check required for merging.
@@ -91,6 +85,8 @@ unchanged by the PR. Apply documented exclusions consistently in both.
 
 ## Workflow safety
 
+The following workflow rules are required.
+
 - Pin every third-party action to a full commit SHA.
 - Use `pull_request`, not `pull_request_target`, for PR-triggered workflows.
 - Set `permissions` to the minimum required (usually `contents: read`).
@@ -98,6 +94,25 @@ unchanged by the PR. Apply documented exclusions consistently in both.
 - Cache dependency installs when the project has a lock file.
 - Set `persist-credentials: false` on checkout steps.
 - Keep artifact retention short (1–3 days for CI; longer only for releases).
+
+## Security and supply chain
+
+The following levels apply to adopting software repositories with relevant workflows:
+
+- **Required:** retain SHA pinning and enable weekly action updates with Dependabot
+  (`package-ecosystem: github-actions`, `directory: /`) or an equivalent updater.
+  See [GitHub's configuration](https://docs.github.com/en/code-security/how-tos/secure-your-supply-chain/secure-your-dependencies/auto-update-actions).
+- **Default:** repositories should enable secret scanning and code scanning where
+  available for their plan, visibility and stack. Check
+  [feature availability](https://docs.github.com/en/code-security/getting-started/github-security-features)
+  before choosing an implementation.
+- **Optional:** published artifacts may include provenance attestations and an
+  SBOM, with consumer verification instructions. See
+  [artifact attestations](https://docs.github.com/en/actions/concepts/security/artifact-attestations).
+- **Future, not required:** plan to adopt workflow dependency locking after general
+  availability and a compatibility review. GitHub's
+  [announcement](https://github.blog/changelog/2026-10-14-github-actions-workflow-lockfiles-in-public-preview/)
+  identifies it as public preview; confirm its status before adoption.
 
 ## Deployments
 
@@ -110,5 +125,6 @@ environments in GitHub when the project has staging or production targets.
 GitHub provides defaults only for supported community health files from a public
 `.github` repository in the same account. These standards, `AGENTS.md` and
 workflows do not automatically propagate. Each adopting repository must reference
-the standards explicitly; Shivani's repositories opt in separately.
+the standards explicitly. They apply to Yashwant Das’s repositories and
+repositories of other owners who opt in separately.
 See [GitHub's supported defaults](https://docs.github.com/en/communities/setting-up-your-project-for-healthy-contributions/creating-a-default-community-health-file).

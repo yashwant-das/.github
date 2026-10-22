@@ -1,12 +1,32 @@
 # Dependency standard
 
+Instructions are required unless explicitly marked default or optional. Terms
+such as maintained framework use the shared [definitions](../README.md#definitions).
+
 ## Deliberate runtime baselines
 
-| Runtime | Baseline | How to declare it |
-| --- | --- | --- |
-| Python | 3.13 | `.python-version`, `requires-python`, and CI |
-| Java | 21 | Maven compiler release/toolchain and CI |
-| Node.js | 24 | `.node-version` or `.nvmrc`, package engines, and CI |
+| Runtime | Baseline | Reason to retain it | Review trigger |
+| --- | --- | --- | --- |
+| Python | 3.13 | Preserve the chosen baseline while supported; security support is scheduled through October 2029. | Review now that it is security-only, when dependencies drop support, or before end of life. |
+| Java | 21 | Owner-confirmed compatibility with existing projects and tools; it is an LTS release. | Review when a tool requires a newer JDK or the selected JDK vendor's support changes. |
+| Node.js | 24 | Preserve a supported LTS baseline; scheduled end of life is April 30, 2028. | Review when a newer LTS is available, dependencies require it, or before end of life. |
+
+Declare Python in `.python-version`, `requires-python` and CI; Java through the
+Maven compiler release/toolchain and CI; Node through `.node-version` or `.nvmrc`,
+package engines and CI.
+
+Support references: [Python status](https://devguide.python.org/versions/),
+[Node schedule](https://github.com/nodejs/Release/blob/main/schedule.json), and
+[Oracle Java roadmap](https://www.oracle.com/java/technologies/java-se-support-roadmap.html).
+Python 3.15 has released and 3.13 is security-only. Java 25 is a newer LTS;
+Oracle's support dates do not represent every JDK vendor. Node 26 is scheduled
+for LTS on October 28, 2026. Review Node support by release status, not parity:
+its [release policy](https://nodejs.org/en/about/previous-releases) changes to an
+annual cycle with every major entering LTS from Node 27.
+
+Review baselines at adoption and at these triggers. A review is not permission
+to upgrade: changing the numbers requires explicit owner approval and compatibility
+evidence. Swift uses each app's documented native toolchain; no new baseline is set.
 
 These are chosen baselines, not claims that no newer runtime exists. Use current
 compatible patches within each baseline and coordinate local, CI, and container
@@ -22,19 +42,10 @@ or registries, then run relevant checks. Exclude preview, beta, and release-cand
 versions unless a documented project need justifies them. Never use an unbounded
 `latest` installation during CI.
 
-Dated reference snapshot, verified from official registries on 2026-10-18:
-
-| Package | Stable version observed | Source |
-| --- | --- | --- |
-| Python Playwright | 1.64.0 | [PyPI](https://pypi.org/pypi/playwright/json) |
-| Node Playwright Test | 1.64.1 | [npm](https://registry.npmjs.org/@playwright%2ftest/latest) |
-| Python Selenium | 4.51.0 | [PyPI](https://pypi.org/pypi/selenium/json) |
-| Appium server | 3.8.0 | [npm](https://registry.npmjs.org/appium/latest) |
-
-These are reference observations, not a tested universal matrix or forced upgrades.
-Selenium Java and other language bindings must be checked in their own registries;
-do not infer a binding version from another language. Refresh the snapshot during
-adoption if newer releases exist. Existing repository versions have not changed.
+Resolve each language binding separately from its official registry or release
+notes at adoption time. Record chosen versions in manifests and locks, with
+verification evidence in the upgrade description. A version in one binding does
+not establish the version or compatibility of another.
 
 ## Compatibility sets
 

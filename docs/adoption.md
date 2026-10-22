@@ -18,10 +18,13 @@ These are proposed targets, not compliance claims. Use the
 [documentation profiles](documentation.md) for remaining repositories. Promote
 starter/demo profiles when their complexity needs the two core guides. A native
 application such as Meters uses `complete`; personal ownership alone does not
-make an application a personal-content project. Shivani's repositories opt in
-separately and preserve their owner-specific workflows.
+make an application a personal-content project. These standards apply to Yashwant
+Das’s repositories and repositories of other owners who opt in separately; preserve
+their owner-specific workflows.
 
 ## Order of adoption
+
+The following order is a default rollout recommendation.
 
 1. Pilot documentation in the four repositories above. Verify that a reader can
    find setup, usage, checks and limitations.
@@ -35,7 +38,7 @@ separately and preserve their owner-specific workflows.
 
 Preserve deliberately supported runtime versions until a compatibility review
 justifies changing them. Resolve compatible stable library versions during each
-upgrade instead of copying the dated dependency snapshot. Update source paths,
+upgrade using the dependency standard’s resolution method. Update source paths,
 imports, tooling and documentation links together when moving files.
 
 ## Completion and later work

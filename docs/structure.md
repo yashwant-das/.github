@@ -1,5 +1,7 @@
 # Folder structure standard
 
+Required conventions follow; layouts marked “should” are defaults.
+
 ## Shared conventions
 
 Create directories only when they hold something useful. A standard layout is a
@@ -25,7 +27,7 @@ guide rather than renaming them to make different projects look identical.
 
 ## Python
 
-Packaged Python projects SHOULD use:
+Packaged Python projects should use:
 
 ```text
 pyproject.toml
@@ -44,7 +46,7 @@ helpers belong near the tests that use them; avoid a catch-all utilities directo
 
 ## Java
 
-Maven projects SHOULD follow Maven's source layout:
+Maven projects should follow Maven's source layout:
 
 ```text
 pom.xml
