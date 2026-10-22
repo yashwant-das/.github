@@ -7,7 +7,7 @@ such as maintained framework use the shared [definitions](../README.md#definitio
 
 | Runtime | Baseline | Reason to retain it | Review trigger |
 | --- | --- | --- | --- |
-| Python | 3.13 | Preserve the chosen baseline while supported; security support is scheduled through October 2029. | Review now that it is security-only, when dependencies drop support, or before end of life. |
+| Python | 3.13 | Preserve the chosen baseline while supported; security support is scheduled through October 2029. | Review when dependencies drop support or before end of life. |
 | Java | 21 | Owner-confirmed compatibility with existing projects and tools; it is an LTS release. | Review when a tool requires a newer JDK or the selected JDK vendor's support changes. |
 | Node.js | 24 | Preserve a supported LTS baseline; scheduled end of life is April 30, 2028. | Review when a newer LTS is available, dependencies require it, or before end of life. |
 
@@ -18,11 +18,11 @@ package engines and CI.
 Support references: [Python status](https://devguide.python.org/versions/),
 [Node schedule](https://github.com/nodejs/Release/blob/main/schedule.json), and
 [Oracle Java roadmap](https://www.oracle.com/java/technologies/java-se-support-roadmap.html).
-Python 3.15 has released and 3.13 is security-only. Java 25 is a newer LTS;
-Oracle's support dates do not represent every JDK vendor. Node 26 is scheduled
-for LTS on October 28, 2026. Review Node support by release status, not parity:
-its [release policy](https://nodejs.org/en/about/previous-releases) changes to an
-annual cycle with every major entering LTS from Node 27.
+Support status as of 2026-10-22; re-check the linked sources before relying on
+it. Python 3.15 has been released and 3.13 is in security-only support. Java 25
+is a newer LTS, and vendor support dates differ. Node 26 is scheduled to enter
+LTS on October 28, 2026; from Node 27, every major release enters LTS on an
+annual cycle. Review Node support by release status, not version parity.
 
 Review baselines at adoption and at these triggers. A review is not permission
 to upgrade: changing the numbers requires explicit owner approval and compatibility
