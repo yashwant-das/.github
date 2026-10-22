@@ -13,7 +13,7 @@ required unless explicitly marked default or optional.
 | `complete` | README, development guide, architecture guide | Maintained applications and substantial test frameworks |
 | `personal` | README, with headings suited to the content | Profiles, portfolios, resumes and reference notes |
 
-A complete project normally has two core guides and at most two additional
+A `complete` project has the two core guides and at most two additional
 maintained guides. Add more only when the README documentation index explains
 why each is needed. Small and personal projects may add focused guides when
 useful; promote small projects when setup or architecture needs sustained detail.
