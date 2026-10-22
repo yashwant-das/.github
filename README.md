@@ -53,7 +53,8 @@ Read the relevant guides before changing a repository. Inspect its existing
 structure and commands, apply the relevant profile, and preserve justified
 exceptions. Record the chosen profile and a link to these standards in that
 repository's README or agent instructions. Use a repository URL that works outside
-the local workspace, preferably pinned to the adopted standards revision.
+the local workspace. Adopters should pin the standards to a tag or commit SHA
+and record it locally. Use a commit SHA when no suitable tag exists.
 
 ## Standards
 

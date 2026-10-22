@@ -21,8 +21,8 @@ Do not create empty guides to satisfy a count.
 
 The budget excludes community files, generated references, changelogs and
 historical plans. Reference notes that are the repository's main content are
-also excluded. Keep historical plans clearly labelled as historical; existing
-`docs/superpowers/` records can stay in place. They are not current setup guides.
+also excluded. Keep records in existing historical plan directories clearly
+labelled as historical. They are not current setup guides.
 
 ## Root README
 
@@ -102,7 +102,7 @@ Explicitly exclude dependencies, generated output and archived plans from the
 selected paths. Historical exclusions must not hide current documentation.
 
 In Node repositories, lock markdownlint-cli2 as a development dependency and
-expose an `npm run lint:md` script. Other stacks may use a pinned CLI or a
+expose an `npm run lint:md` script. Python, Java and Swift repositories may use a pinned CLI or a
 SHA-pinned lint action; document an equivalent local command without forcing
 application code into a Node project. Never install an unbounded latest version
 in CI. Run in check mode there; apply fixes locally and review the diff.
