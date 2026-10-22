@@ -32,9 +32,12 @@ The following order is a default rollout recommendation.
    Preserve useful historical records and personal content.
 3. Align folder conventions, runtime declarations, uv/Ruff and dependency practices
    in a separate, tested change per repository. Enable weekly dependency PRs for
-   supported ecosystems during this stage, as required by the dependency standard.
+   the package ecosystems the repository uses during this stage, as required by
+   the dependency standard.
 4. Apply pre-commit and CI gates to software repositories, documenting required
    checks and integration exceptions. Follow the [scope](../README.md#scope).
+   Enable weekly `github-actions` updates once workflows exist, as required by the
+   [CI/CD standard](cicd.md#security-and-supply-chain).
 
 Preserve deliberately supported runtime versions until a compatibility review
 justifies changing them. Resolve compatible stable library versions during each

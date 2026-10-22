@@ -31,9 +31,9 @@ until approval.
 | Term | Meaning |
 | --- | --- |
 | Maintained | Intended for current use, with an owner responsible for keeping it accurate or working; excludes archived records and generated output. |
-| Complete project | A project assigned the `complete` documentation profile because setup, development and architecture need separate guides. |
-| Substantial test framework | Reusable test infrastructure with enough configuration, integrations or execution paths to need development and architecture guides. |
-| Maintained framework | Reusable application or testing infrastructure intended for current use and supported by an owner. |
+| Complete project | A maintained application or substantial test framework. It uses the `complete` documentation profile. |
+| Substantial test framework | Reusable test infrastructure with at least two of: several execution modes or environments, external integrations (browsers, devices, cloud services or LLMs), shared layers such as page objects, fixtures or drivers, and CI or reporting configuration. |
+| Maintained framework | Any reusable application or test infrastructure that is in current use and has a named owner, whatever its size. A substantial test framework is a maintained framework, but not the reverse. |
 | Software repository | A repository containing executable application, library, test or build/generation code, including personal-content projects with such code. |
 
 ## Requirement levels
@@ -46,8 +46,8 @@ until approval.
 
 These describe the target standard. Existing repositories adopt it in stages;
 record pending work without claiming full compliance. Soft modal phrasing such
-as 'normally' or 'usually' reads as a default, not a requirement. Conditional
-qualifiers such as 'where practical' or 'where available' are in-scope
+as “normally” or “usually” reads as a default, not a requirement. Conditional
+qualifiers such as “where practical” or “where available” are in-scope
 conditions, not defaults — the rule applies when the condition holds. Unless
 explicitly marked default or optional, policy instructions and rule lists in
 these guides are required within scope; examples and rollout suggestions are not
