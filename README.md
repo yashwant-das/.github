@@ -46,8 +46,8 @@ until approval.
 
 These describe the target standard. Existing repositories adopt it in stages;
 record pending work without claiming full compliance. Soft modal phrasing such
-as 'normally' or 'usually' reads as a default, not a requirement. Conditional
-qualifiers such as 'where practical' or 'where available' are in-scope
+as “normally” or “usually” reads as a default, not a requirement. Conditional
+qualifiers such as “where practical” or “where available” are in-scope
 conditions, not defaults — the rule applies when the condition holds. Unless
 explicitly marked default or optional, policy instructions and rule lists in
 these guides are required within scope; examples and rollout suggestions are not
