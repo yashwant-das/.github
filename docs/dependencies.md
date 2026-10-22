@@ -6,7 +6,7 @@
 | --- | --- | --- |
 | Python | 3.13 | `.python-version`, `requires-python`, and CI |
 | Java | 21 | Maven compiler release/toolchain and CI |
-| Node.js | 24 | `.node-version`, package engines, and CI |
+| Node.js | 24 | `.node-version` or `.nvmrc`, package engines, and CI |
 
 These are chosen baselines, not claims that no newer runtime exists. Use current
 compatible patches within each baseline and coordinate local, CI, and container
@@ -54,9 +54,10 @@ adoption if newer releases exist. Existing repository versions have not changed.
 ## Reproducible installs
 
 - Node: commit the lockfile and use `npm ci` with the supported Node/npm toolchain.
-- Python: commit `uv.lock` and use `uv sync --locked`; alternatively commit fully
-  resolved pinned requirements, preferably with hashes, and use that install path.
-  Declare direct dependencies and Python compatibility in `pyproject.toml` where used.
+- Python: use uv by default, declare direct dependencies and Python compatibility
+  in `pyproject.toml`, commit `uv.lock`, and use `uv sync --locked` in CI. An existing
+  fully resolved pinned requirements workflow may remain with a documented reason
+  and review trigger; prefer hashes for that install path.
 - Java: pin dependencies and build plugins, use Maven dependency management/BOMs
   when appropriate, and pin the wrapper distribution. Use `maven.compiler.release`
   21 for projects targeting Java 21. Maven has no npm-style built-in lockfile.
@@ -66,9 +67,25 @@ adoption if newer releases exist. Existing repository versions have not changed.
 Do not document versions in many places manually. Manifests, lockfiles, and runtime
 files are the source of truth. Link to them from guides when possible.
 
+## Python quality tools
+
+Use Ruff for linting and formatting. Declare it in a development or lint dependency
+group, lock its version, and keep configuration in `pyproject.toml`. Run both
+`uv run ruff check .` and `uv run ruff format --check .` after the locked CI install.
+Use the same configuration locally and in CI. Match Ruff's target to the lowest
+supported Python version, not just the preferred development runtime.
+
+Preserve established rule sets and line lengths unless deliberately migrating.
+For a new configuration, start with Ruff's default lint rules plus import sorting
+(`I`) and its default formatter. Avoid running overlapping formatters. Ruff does
+not replace type checking; maintained Python frameworks should declare a type
+checker and its checked scope. Document gradual adoption and exclusions.
+
 ## Updates and exceptions
 
-Use weekly automated dependency PRs for supported ecosystems. Group compatible
+As part of dependency adoption, enable weekly automated dependency PRs for
+supported ecosystems. Until adopted, record this as pending work; documentation
+adoption alone does not require enabling automation. Group compatible
 minor/patch changes when useful. Major updates require explicit review; automation
 may propose them but must not merge them blindly. Run the relevant unit, smoke,
 build, and integration checks before merging. A skipped device test is not evidence

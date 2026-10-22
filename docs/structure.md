@@ -36,8 +36,9 @@ tests/
 docs/
 ```
 
-Use `pyproject.toml` for project metadata and tooling. Prefer uv for new packaged
-projects; a fully pinned requirements workflow is acceptable where established.
+Use `pyproject.toml` for project metadata and tooling, and uv for dependency
+management. Existing pinned requirements workflows may remain as documented
+exceptions under the dependency standard.
 A short script demonstration can retain a flat structure. Pytest fixtures and
 helpers belong near the tests that use them; avoid a catch-all utilities directory.
 
@@ -88,4 +89,4 @@ Swift apps, portfolios, resumes, and reference notes retain their platform or
 content conventions. Use the applicable documentation profile and explain unusual
 paths. Existing projects migrate incrementally when changing related areas. Moving
 files requires updating imports, tooling, CI, and documentation links together.
-The first validator checks documentation, not source-tree compliance.
+Review documentation and links as part of migration; no shared validator is required.
