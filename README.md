@@ -24,7 +24,9 @@ The supported language stacks are Python, Java, JavaScript/TypeScript and Swift.
 
 ## Definitions
 
-Draft for owner review; these definitions describe how the guides use the terms.
+Pending owner sign-off as the shared table; the guides already use these terms,
+so treat them as the operative meanings and record any conflict as pending work
+until approval.
 
 | Term | Meaning |
 | --- | --- |
@@ -38,14 +40,16 @@ Draft for owner review; these definitions describe how the guides use the terms.
 
 - **Required / must:** apply when in scope. Record any exception with its reason,
   owner and review trigger.
-- **Default / should / prefer:** use unless an existing approach or project need
-  justifies another choice; document the reason.
+- **Default / should / prefer / normally:** use unless an existing approach or
+  project need justifies another choice; document the reason.
 - **Optional / may:** adopt only when useful to the project.
 
 These describe the target standard. Existing repositories adopt it in stages;
-record pending work without claiming full compliance. Unless explicitly marked
-default or optional, policy instructions and rule lists in these guides are
-required within scope; examples and rollout suggestions are not requirements.
+record pending work without claiming full compliance. Soft modal phrasing such
+as 'normally' or 'usually' reads as a default, not a requirement. Unless
+explicitly marked default or optional, policy instructions and rule lists in
+these guides are required within scope; examples and rollout suggestions are not
+requirements.
 
 ## Using the standards
 
