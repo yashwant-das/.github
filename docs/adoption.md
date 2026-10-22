@@ -38,7 +38,7 @@ The following order is a default rollout recommendation.
 
 Preserve deliberately supported runtime versions until a compatibility review
 justifies changing them. Resolve compatible stable library versions during each
-upgrade instead of copying the dated dependency snapshot. Update source paths,
+upgrade using the dependency standard’s resolution method. Update source paths,
 imports, tooling and documentation links together when moving files.
 
 ## Completion and later work
