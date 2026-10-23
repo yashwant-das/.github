@@ -65,7 +65,7 @@ and record it locally. Use a commit SHA when no suitable tag exists.
 ## Standards
 
 - [Documentation](docs/documentation.md) — what every repo should document and how.
-- [Folder structure](docs/structure.md) — directory conventions per language stack.
+- [Folder structure](docs/structure.md) — directory conventions and Java namespace naming.
 - [Dependencies](docs/dependencies.md) — runtime baselines and dependency practices.
 - [CI/CD](docs/cicd.md) — pre-commit gates, required CI checks and workflow safety.
 - [Adoption roadmap](docs/adoption.md) — pilot profiles and staged migration.
