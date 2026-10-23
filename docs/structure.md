@@ -65,27 +65,15 @@ declarations and separate bundled sample application code from its test clients.
 Prefer a Maven wrapper for repeatable builds; pin dependency and build-plugin
 versions in the POM.
 
-### Java namespaces
+Java QA frameworks use `com.qaframework` as the Maven `groupId` and
+`com.qaframework.<project>` as the base package. Use short, descriptive lowercase
+project names such as `playwright`, `selenium` or `payments`, with functional
+subpackages such as `config`, `pages`, `listeners` and `tests`. Avoid personal
+names, redundant language segments and unclear abbreviations. Keep artifact IDs
+descriptive, such as `qa-java-playwright`.
 
-Yashwant’s Java QA projects use the neutral convention below:
-
-- Maven `groupId`: `com.qaframework`.
-- Base package: `com.qaframework.<project>`, using a short, descriptive lowercase
-  project name; for example, `playwright`, `selenium` or `payments`.
-- Functional subpackages: names such as `config`, `pages`, `listeners` and `tests`.
-- Avoid personal names, redundant language segments and unexplained abbreviations.
-  Retain descriptive artifact IDs such as `qa-java-playwright`.
-
-Examples: `com.qaframework.playwright`, `com.qaframework.selenium` and
-`com.qaframework.payments`. Other owners’ and client repositories retain their
-owner-approved namespaces unless they explicitly opt into this convention.
-
-Migrate one repository at a time. Update source directories, package declarations,
-imports, suite/listener class names, package scans, logging and documentation
-in the same tested change. Update Maven group references across modules when
-applicable. Preserve deliberate public compatibility; document any migration
-impact on consumers. A namespace change must not silently omit tests or alter
-runtime baselines.
+Other owners’ and client repositories retain their approved namespaces unless
+they opt into this convention.
 
 ## JavaScript and TypeScript
 
@@ -114,4 +102,6 @@ Swift apps, portfolios, resumes, and reference notes retain their platform or
 content conventions. Use the applicable documentation profile and explain unusual
 paths. Existing projects migrate incrementally when changing related areas. Moving
 files requires updating imports, tooling, CI, and documentation links together.
-Review documentation and links as part of migration; no shared validator is required.
+For Java package changes, also update suite/listener names, package scans, logging
+and Maven module references. Review documentation and links as part of migration;
+no shared validator is required.
